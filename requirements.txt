@@ -1,0 +1,11 @@
+streamlit
+yfinance
+requests
+google-generativeai
+python-dotenv
+pandas
+beautifulsoup4
+lxml
+plotly
+openpyxl  
+WeasyPrint

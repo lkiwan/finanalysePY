@@ -1,0 +1,139 @@
+<!-- report_template.html (Version Corrigée) -->
+<!DOCTYPE html>
+<html lang="fr">
+  <!-- CORRECTION 2: Ajout de l'attribut de langue -->
+  <head>
+    <meta charset="UTF-8" />
+    <!-- CORRECTION 1: Ajout de la balise viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rapport Financier - {{ data.name }}</title>
+    <style>
+      body {
+        font-family: "Helvetica", sans-serif;
+        color: #333;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #1a1a1a;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+      }
+      h1 {
+        font-size: 24px;
+      }
+      h2 {
+        font-size: 20px;
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .header .symbol {
+        font-size: 18px;
+        color: #666;
+      }
+      .summary-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+      .metric-box {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        text-align: center;
+      }
+      .metric-label {
+        font-size: 14px;
+        color: #555;
+      }
+      .metric-value {
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .ai-analysis {
+        background-color: #f9f9f9;
+        border-left: 5px solid #4caf50;
+        padding: 15px;
+        margin-top: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-size: 12px;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      footer {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 10px;
+        color: #999;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>{{ data.name }}</h1>
+      <div class="symbol">{{ data.symbol }} - Rapport du {{ today }}</div>
+    </div>
+
+    <h2>Synthèse des Métriques Clés</h2>
+    <div class="summary-grid">
+      <div class="metric-box">
+        <div class="metric-label">Prix Actuel</div>
+        <div class="metric-value">${{ "%.2f"|format(data.price) }}</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Score Financier</div>
+        <div class="metric-value">{{ "%.1f"|format(score) }}/10</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Capitalisation</div>
+        <div class="metric-value">
+          ${{ "%.2f"|format(data.marketCap / 1e9) }} Mds
+        </div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Ratio C/B (PE)</div>
+        <div class="metric-value">{{ "%.2f"|format(data.peRatio) }}</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">ROE</div>
+        <div class="metric-value">
+          {{ "%.2f"|format(data.returnOnEquity * 100) }}%
+        </div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Dette/Capitaux Propres</div>
+        <div class="metric-value">{{ "%.2f"|format(data.debtToEquity) }}</div>
+      </div>
+    </div>
+
+    <h2>Analyse par l'IA (Gemini)</h2>
+    <div class="ai-analysis">
+      <p>{{ ai_summary }}</p>
+    </div>
+
+    <h2>Compte de Résultat</h2>
+    {{ financials_html|safe }}
+
+    <h2>Bilan</h2>
+    {{ balance_sheet_html|safe }}
+
+    <footer>
+      Rapport généré par FinAnalyse Pro. Les données sont fournies à titre
+      informatif uniquement.
+    </footer>
+  </body>
+</html>

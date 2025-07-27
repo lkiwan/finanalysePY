@@ -1,0 +1,17 @@
+# Fichier .gitignore
+
+# Ignorer le fichier des variables d'environnement (SECRETS !)
+.env
+
+# Ignorer les répertoires d'environnement virtuel
+.venv/
+venv/
+env/
+
+# Ignorer les fichiers cache de Python
+__pycache__/
+*.pyc
+
+# Ignorer les fichiers de configuration de l'éditeur
+.vscode/
+.idea/
